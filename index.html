@@ -49,6 +49,28 @@
   .calc-link:hover { border-color:var(--accent); }
   .calc-link b { display:block; font-size:13px; margin-bottom:3px; }
   .calc-link span { display:block; font-size:11px; color:var(--dim); line-height:1.35; }
+  @media (max-width:520px) {
+    body { padding:16px 10px 48px; }
+    .card { padding:14px 12px; }
+    .petrow { display:grid; grid-template-columns:minmax(0,1fr) 52px 88px; gap:7px; }
+    .petrow .f-pet, .petrow .f-food { grid-column:span 2; }
+    .petrow .f-num, .petrow .f-max, .petrow .f-life, .petrow .f-rm { min-width:0; width:auto; }
+    .petrow .f-rm { align-self:end; }
+    .petrow .f-rm .btn { width:100%; padding:7px 4px; }
+    .cropcfg { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .cropcfg .cn { grid-column:1 / -1; padding-bottom:0; }
+    .cropcfg .fld { min-width:0; width:auto; }
+    #result thead { display:none; }
+    #result, #result tbody { display:block; }
+    #result tbody { display:grid; gap:8px; }
+    #result tr { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    #result td { min-width:0; padding:7px 8px; text-align:right; font-size:12px; }
+    #result td:first-child { grid-column:1 / -1; text-align:left; font-weight:700; background:var(--panel2); }
+    #result td::before { content:attr(data-label); display:block; color:var(--faint); font-size:9px; font-weight:600; text-transform:uppercase; }
+    #result td:first-child::before { display:none; }
+    #result .plants { font-size:14px; }
+    .calc-links { grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -277,10 +299,10 @@ function compute() {
     const tr = document.createElement('tr');
     tr.innerHTML =
       '<td>'+cropName(c)+'</td>' +
-      '<td>'+(need?need.toFixed(1):'–')+'</td>' +
-      '<td>'+cyc+'</td>' +
-      '<td>'+perHrTxt+'</td>' +
-      '<td class="plants">'+result+'</td>';
+      '<td data-label="Need /hr">'+(need?need.toFixed(1):'–')+'</td>' +
+      '<td data-label="Cycle / grow">'+cyc+'</td>' +
+      '<td data-label="Per plant/tile /hr">'+perHrTxt+'</td>' +
+      '<td data-label="Need" class="plants">'+result+'</td>';
     tb.appendChild(tr);
   });
 
