@@ -155,7 +155,7 @@ function renderTeam() {
     div.innerHTML =
       '<div class="f-pet"><label>Pet</label><select data-i="'+i+'" data-k="pet">' +
         petOptions.replace('value="'+row.pet+'"','value="'+row.pet+'" selected') + '</select></div>' +
-      '<div class="f-num"><label>Qty</label><input type="number" min="1" step="1" data-i="'+i+'" data-k="qty" value="'+row.qty+'"></div>' +
+      '<div class="f-num"><label>Qty</label><input type="number" min="1" max="3" step="1" data-i="'+i+'" data-k="qty" value="'+row.qty+'"></div>' +
       '<div class="f-max"><label>Max hunger</label><input value="'+pet.max.toLocaleString()+'" disabled></div>' +
       '<div class="f-life"><label>Hunger lasts (min)</label><input type="number" min="1" step="1" data-i="'+i+'" data-k="life" value="'+(row.life ?? life ?? '')+'" placeholder="?"></div>' +
       '<div class="f-food"><label>Food</label><select data-i="'+i+'" data-k="food">'+foodOpts+'</select></div>' +
@@ -165,7 +165,7 @@ function renderTeam() {
   });
   el.querySelectorAll('[data-i]').forEach(inp => inp.addEventListener('input', e => {
     const i=+e.target.dataset.i, k=e.target.dataset.k;
-    team[i][k] = (k==='pet'||k==='food') ? e.target.value : (+e.target.value||0);
+    team[i][k] = (k==='pet'||k==='food') ? e.target.value : (k==='qty' ? Math.min(3, Math.max(1, +e.target.value||1)) : (+e.target.value||0));
     if (k==='pet') team[i].food = defaultFood(e.target.value);
     renderTeam(); renderCrops(); compute();
   }));
