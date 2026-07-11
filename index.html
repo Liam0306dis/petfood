@@ -44,6 +44,11 @@
   .cropcfg .fld { flex:0 0 92px; }
   .note { font-size:12px; color:var(--dim); margin-top:10px; }
   .mini { font-size:10px; color:var(--faint); }
+  .calc-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }
+  .calc-link { display:block; padding:11px 12px; background:var(--panel2); border:1px solid var(--line); border-radius:8px; color:var(--text); text-decoration:none; }
+  .calc-link:hover { border-color:var(--accent); }
+  .calc-link b { display:block; font-size:13px; margin-bottom:3px; }
+  .calc-link span { display:block; font-size:11px; color:var(--dim); line-height:1.35; }
 </style>
 </head>
 <body>
@@ -70,6 +75,17 @@
       <tbody></tbody>
     </table>
     <div class="note" id="resnote"></div>
+  </div>
+
+  <div class="card">
+    <h2>Other tools</h2>
+    <div class="calc-links">
+      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1490498595219308785/1490498595219308785"><b>Garden Overview</b><span>Open the Garden Overview userscript post on Discord.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/magiccalc/"><b>Granter</b><span>Estimate pet ability chances, wait times, and egg growth boosts.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/magic-dust-calc/"><b>Magic Dust</b><span>Estimate pet dust value and expected dust from eggs.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/capsule-calc/"><b>Dawn Capsule</b><span>Estimate capsules per Dawn and compare capture cadence options.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/farm-projection/"><b>Farm Projection</b><span>Project a farm's finished value and the time needed to get there.</span></a>
+    </div>
   </div>
 </div>
 
