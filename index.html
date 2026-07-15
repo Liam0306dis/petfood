@@ -267,7 +267,8 @@ function compute() {
     const cfg = cropCfg(row.food);
     if (!cfg.value) return;
     const hungerPerHr = PETS[row.pet].max / life * 60 * (row.qty||0);
-    demand[row.food] = (demand[row.food]||0) + hungerPerHr / cfg.value;
+    const effectiveFoodValue = Math.min(cfg.value, PETS[row.pet].max);
+    demand[row.food] = (demand[row.food]||0) + hungerPerHr / effectiveFoodValue;
   });
 
   const tb = $('result').querySelector('tbody');
