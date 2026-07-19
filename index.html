@@ -44,8 +44,8 @@
   .cropcfg .fld { flex:0 0 92px; }
   .note { font-size:12px; color:var(--dim); margin-top:10px; }
   .mini { font-size:10px; color:var(--faint); }
-  .calc-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }
-  .calc-link { display:block; padding:11px 12px; background:var(--panel2); border:1px solid var(--line); border-radius:8px; color:var(--text); text-decoration:none; }
+  .calc-links { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+  .calc-link { display:block; flex:1 1 210px; max-width:260px; padding:11px 12px; background:var(--panel2); border:1px solid var(--line); border-radius:8px; color:var(--text); text-decoration:none; }
   .calc-link:hover { border-color:var(--accent); }
   .calc-link b { display:block; font-size:13px; margin-bottom:3px; }
   .calc-link span { display:block; font-size:11px; color:var(--dim); line-height:1.35; }
@@ -69,7 +69,7 @@
     #result td::before { content:attr(data-label); display:block; color:var(--faint); font-size:9px; font-weight:600; text-transform:uppercase; }
     #result td:first-child::before { display:none; }
     #result .plants { font-size:14px; }
-    .calc-links { grid-template-columns:1fr; }
+    .calc-link { flex-basis:100%; max-width:none; }
   }
 </style>
 </head>
@@ -110,6 +110,7 @@
       <a class="calc-link" href="https://liam0306dis.github.io/magic-dust-calc/"><b>Magic Dust</b><span>Estimate pet dust value and expected dust from eggs.</span></a>
       <a class="calc-link" href="https://liam0306dis.github.io/capsule-calc/"><b>Dawn Capsule</b><span>Estimate capsules per Dawn and compare capture cadence options.</span></a>
       <a class="calc-link" href="https://liam0306dis.github.io/farm-projection/"><b>Farm Projection</b><span>Project a farm's finished value and the time needed to get there.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/garden-layout/"><b>Garden Layout Planner</b><span>Plan your whole farm layout - plants, mutations and decorations.</span></a>
     </div>
   </div>
 </div>
