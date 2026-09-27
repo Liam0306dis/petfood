@@ -72,9 +72,35 @@
     .calc-link { flex-basis:100%; max-width:none; }
   }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="mg-theme">
+  /* Shared look for every Magic Garden tool, loaded after the page's own styles so these win. */
+  :root {
+    --bg:#0d1010; --panel:#151a18; --panel2:#1c231f; --line:rgba(255,255,255,.09);
+    --text:#eef2ef; --txt:#eef2ef; --dim:#a7b0aa; --faint:#7d8880;
+    --accent:#b89cff; --accent2:#7ee0c0; --good:#65d69a; --gold:#f5c542; --warn:#fbbf24; --bad:#f87171;
+  }
+  html { color-scheme:dark; }
+  body {
+    background:radial-gradient(900px 420px at 50% -160px, rgba(184,156,255,.11), transparent 70%) no-repeat, var(--bg);
+    font-family:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  .card { box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px rgba(0,0,0,.18); }
+  .mg-nav { display:flex; margin:0 0 16px; }
+  .mg-nav a { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--dim); font-size:12.5px; text-decoration:none; }
+  .mg-nav a:hover { color:var(--text); border-color:var(--accent); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  input:focus, select:focus, textarea:focus { border-color:var(--accent); }
+  .calc-link { transition:border-color .15s, background .15s; }
+  .calc-link:hover { border-color:var(--accent); }
+  .calc-link b::after { content:" \2197"; color:var(--faint); font-weight:400; }
+</style>
 </head>
 <body>
 <div class="wrap">
+  <nav class="mg-nav" aria-label="Site"><a href="https://liam0306dis.github.io/hub/">&larr; All Magic Garden tools</a></nav>
   <h1>Pet Feeding Calculator</h1>
   <p class="sub">See which is the best food for your pets and work out how many food plants/seeds you will go through.</p>
 
@@ -102,15 +128,13 @@
   <div class="card">
     <h2>Other tools</h2>
     <div class="calc-links">
-      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1532163413738782740/1532163413738782740"><b>Garden Companion</b><span>Open the Garden Companion userscript post on Discord.</span></a>
-      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1490498595219308785/1490498595219308785"><b>Garden Overview</b><span>Open the Garden Overview userscript post on Discord.</span></a>
-      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1526739574896722082/1526739574896722082"><b>Coin Finder Silencer</b><span>Open the Coin Finder Silencer userscript post on Discord.</span></a>
-      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1527680568630968411/1527680568630968411"><b>Drag to Move Plants</b><span>Open the Drag to Move Plants userscript post on Discord.</span></a>
-      <a class="calc-link" href="https://liam0306dis.github.io/celestial-layout/"><b>Celestial Placement</b><span>Plan celestial placements with Dawn and Amber mutation coverage.</span></a>
-      <a class="calc-link" href="https://liam0306dis.github.io/magiccalc/"><b>Granter</b><span>Estimate pet ability chances, wait times, and egg growth boosts.</span></a>
+      <a class="calc-link" href="https://discord.com/channels/808935495543160852/1532163413738782740/1532163413738782740"><b>Garden Companion</b><span>Open the Garden Companion userscript post on Discord. Includes the old Garden Overview, Coin Finder Silencer and Drag to Move Plants.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/hunger/"><b>Pet Hunger</b><span>Check whether Hunger Restore and Hunger Boost keep a pet team fed.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/magiccalc/"><b>Granter &amp; Abilities</b><span>Pet ability chances, wait times, and growth and hatch boosts.</span></a>
       <a class="calc-link" href="https://liam0306dis.github.io/magic-dust-calc/"><b>Magic Dust</b><span>Estimate pet dust value and expected dust from eggs.</span></a>
-      <a class="calc-link" href="https://liam0306dis.github.io/capsule-calc/"><b>Dawn Capsule</b><span>Estimate capsules per Dawn and compare capture cadence options.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/capsule-calc/"><b>Capsules</b><span>Expected Dawn and Amber capsules and the best capture cadence.</span></a>
       <a class="calc-link" href="https://liam0306dis.github.io/farm-projection/"><b>Farm Projection</b><span>Project a farm's finished value and the time needed to get there.</span></a>
+      <a class="calc-link" href="https://liam0306dis.github.io/celestial-layout/"><b>Celestial Placement</b><span>Plan celestial placements with Dawn and Amber mutation coverage.</span></a>
       <a class="calc-link" href="https://liam0306dis.github.io/garden-layout/"><b>Garden Layout Planner</b><span>Plan your whole farm layout - plants, mutations and decorations.</span></a>
     </div>
   </div>
@@ -119,6 +143,10 @@
 <script>
 const PETS = {"Worm":{"name":"Worm","max":500,"diet":["Strawberry","Carrot","Tomato","Apple","Aloe"]},"Snail":{"name":"Snail","max":1000,"diet":["Blueberry","Tomato","Corn","Daffodil","Chrysanthemum"]},"Bee":{"name":"Bee","max":1500,"diet":["Strawberry","Blueberry","Daffodil","Chrysanthemum","Lily"]},"Chicken":{"name":"Chicken","max":3000,"diet":["Corn","Aloe","Watermelon","Pumpkin"]},"Bunny":{"name":"Bunny","max":750,"diet":["Strawberry","Carrot","Blueberry","Apple","OrangeTulip"]},"Dragonfly":{"name":"Dragonfly","max":250,"diet":["Apple","OrangeTulip","Echeveria"]},"Pig":{"name":"Pig","max":50000,"diet":["Watermelon","Pumpkin","Mushroom","Bamboo","Eggplant"]},"Cow":{"name":"Cow","max":25000,"diet":["Coconut","Banana","BurrosTail","Mushroom"]},"Turkey":{"name":"Turkey","max":500,"diet":["FavaBean","Corn","Squash"]},"Squirrel":{"name":"Squirrel","max":15000,"diet":["Banana","Pumpkin","Grape"]},"Turtle":{"name":"Turtle","max":100000,"diet":["Watermelon","BurrosTail","Pepper","Bamboo"]},"Goat":{"name":"Goat","max":20000,"diet":["Coconut","Pumpkin","Camellia","Pepper","PassionFruit"]},"SnowFox":{"name":"Snow Fox","max":14000,"diet":["Squash","Echeveria","Grape"]},"Stoat":{"name":"Stoat","max":10000,"diet":["Banana","Pepper","Cactus"]},"WhiteCaribou":{"name":"Caribou","max":30000,"diet":["Camellia","BurrosTail","Mushroom"]},"Pony":{"name":"Pony","max":4000,"diet":["Pear","Coconut","Beet"]},"Sheep":{"name":"Sheep","max":250,"diet":["Clover","FavaBean","Cabbage","FourLeafClover"]},"Horse":{"name":"Horse","max":25000,"diet":["Squash","Echeveria","Gentian"]},"Ostrich":{"name":"Ostrich","max":40000,"diet":["Peach","Eggplant","Date","VioletCort"]},"FireHorse":{"name":"Fire Horse","max":200000,"diet":["DragonFruit","Poinsettia","Cacao"]},"Butterfly":{"name":"Butterfly","max":25000,"diet":["Daffodil","Lemon","Grape","Lily","Sunflower"]},"Peacock":{"name":"Peacock","max":100000,"diet":["Lychee","Cactus","Sunflower"]},"Capybara":{"name":"Capybara","max":150000,"diet":["Lemon","PassionFruit","DragonFruit","Lychee"]},"Bat":{"name":"Bat","max":300,"diet":["Clover","Cabbage","Delphinium"]},"Platypus":{"name":"Platypus","max":10000,"diet":["Cattail","Pear","Leek"]},"ThunderWolf":{"name":"Thunder Wolf","max":150000,"diet":["PricklyPear","Date","DragonFruit"]},"Rooster":{"name":"Rooster","max":1000,"diet":["Corn","Daisy","Habanero","Cardoon"]},"RedFox":{"name":"Red Fox","max":75000,"diet":["Peach","Persimmon","PricklyPear","VioletCort"]},"Phoenix":{"name":"Phoenix","max":300000,"diet":["DragonFruit","Saffron","Cacao","Marigold","Milkcap"]}};
 const CROPS = {"Aloe":{"name":"Aloe Plant","value":310,"slots":1,"regrows":false},"Apple":{"name":"Apple Tree","value":800,"slots":7,"regrows":true},"Bamboo":{"name":"Bamboo Plant","value":500000,"slots":1,"regrows":false},"Banana":{"name":"Banana Plant","value":1750,"slots":5,"regrows":true},"Beet":{"name":"Beet Plant","value":350,"slots":1,"regrows":false},"Blueberry":{"name":"Blueberry Plant","value":23,"slots":5,"regrows":true},"BurrosTail":{"name":"Burro's Tail Plant","value":6000,"slots":2,"regrows":true},"Cabbage":{"name":"Cabbage Plant","value":42,"slots":1,"regrows":true},"Cacao":{"name":"Cacao Plant","value":150000,"slots":6,"regrows":true},"Cactus":{"name":"Cactus Plant","value":220000,"slots":1,"regrows":false},"Camellia":{"name":"Camellia Hedge","value":4875,"slots":8,"regrows":true},"Carrot":{"name":"Carrot Plant","value":20,"slots":1,"regrows":false},"Cattail":{"name":"Cattail Patch","value":1800,"slots":14,"regrows":false},"Chrysanthemum":{"name":"Chrysanthemum Bush","value":18000,"slots":7,"regrows":true},"Clover":{"name":"Clover Patch","value":30,"slots":15,"regrows":false},"Coconut":{"name":"Coconut Tree","value":12000,"slots":7,"regrows":true},"Corn":{"name":"Corn Plant","value":36,"slots":1,"regrows":true},"Daffodil":{"name":"Daffodil Plant","value":1090,"slots":1,"regrows":false},"Date":{"name":"Date Palm","value":15000,"slots":11,"regrows":true},"Delphinium":{"name":"Delphinium Plant","value":530,"slots":1,"regrows":false},"DragonFruit":{"name":"Dragon Fruit Plant","value":30000,"slots":7,"regrows":true},"Echeveria":{"name":"Echeveria Plant","value":3200,"slots":1,"regrows":false},"Eggplant":{"name":"Eggplant Plant","value":100000,"slots":3,"regrows":true},"FavaBean":{"name":"Fava Bean Plant","value":30,"slots":8,"regrows":true},"FourLeafClover":{"name":"Four-Leaf Clover","value":7777,"slots":15,"regrows":false},"Gentian":{"name":"Gentian Plant","value":10000,"slots":1,"regrows":false},"Grape":{"name":"Grape Plant","value":50000,"slots":1,"regrows":true},"Leek":{"name":"Leek Plant","value":35000,"slots":1,"regrows":false},"Lemon":{"name":"Lemon Tree","value":50000,"slots":6,"regrows":true},"Lily":{"name":"Lily Plant","value":20123,"slots":1,"regrows":false},"Lychee":{"name":"Lychee Plant","value":50000,"slots":6,"regrows":true},"Mushroom":{"name":"Mushroom Plant","value":160000,"slots":1,"regrows":false},"OrangeTulip":{"name":"Tulip Plant","value":767,"slots":1,"regrows":false},"PassionFruit":{"name":"Passion Fruit Plant","value":200000,"slots":2,"regrows":true},"Peach":{"name":"Peach Tree","value":9000,"slots":7,"regrows":true},"Pear":{"name":"Pear Tree","value":3000,"slots":7,"regrows":true},"Pepper":{"name":"Pepper Plant","value":7000,"slots":9,"regrows":true},"Poinsettia":{"name":"Poinsettia Bush","value":20000,"slots":4,"regrows":true},"PricklyPear":{"name":"Prickly Pear Cactus","value":75000,"slots":5,"regrows":true},"Pumpkin":{"name":"Pumpkin Plant","value":3700,"slots":1,"regrows":false},"Squash":{"name":"Squash Plant","value":7000,"slots":3,"regrows":true},"Strawberry":{"name":"Strawberry Plant","value":14,"slots":5,"regrows":true},"Sunflower":{"name":"Sunflower Plant","value":750000,"slots":1,"regrows":true},"Tomato":{"name":"Tomato Plant","value":27,"slots":2,"regrows":true},"VioletCort":{"name":"Violet Cort Plant","value":600000,"slots":1,"regrows":false},"Watermelon":{"name":"Watermelon Plant","value":2708,"slots":1,"regrows":false},"Daisy":{"name":"Daisy Patch","value":130,"slots":9,"regrows":false},"PurpleDaisy":{"name":"Purple Daisy","value":9999,"slots":9,"regrows":false},"Rose":{"name":"Rose Plant","value":300,"slots":1,"regrows":false},"Snowdrop":{"name":"Snowdrop Patch","value":250,"slots":12,"regrows":false},"SnowdropDouble":{"name":"Double Snowdrop","value":8888,"slots":12,"regrows":false},"VariegatedCattail":{"name":"Variegated Cattail","value":11111,"slots":14,"regrows":false},"Lavender":{"name":"Lavender Plant","value":20000,"slots":1,"regrows":false},"PineTree":{"name":"Pine Tree","value":75000,"slots":1,"regrows":false},"Saffron":{"name":"Saffron Plant","value":50000,"slots":1,"regrows":false},"Cardoon":{"name":"Cardoon Plant","value":50000,"slots":1,"regrows":false},"Persimmon":{"name":"Persimmon Tree","value":25000,"slots":6,"regrows":true},"Habanero":{"name":"Habanero Plant","value":15000,"slots":8,"regrows":true},"Ube":{"name":"Ube Plant","value":2000000,"slots":1,"regrows":false},"Milkcap":{"name":"Milkcap Plant","value":3000000,"slots":1,"regrows":false},"Marigold":{"name":"Marigold Plant","value":1000000,"slots":1,"regrows":true},"Dawnbreaker":{"name":"Dawnbreaker Plant","value":12000000,"slots":1,"regrows":false},"Emberbloom":{"name":"Emberbloom Patch","value":5000000,"slots":15,"regrows":false},"Embercrown":{"name":"Embercrown","value":15000000,"slots":15,"regrows":false},"Starweaver":{"name":"Starweaver Plant","value":10000000,"slots":1,"regrows":true},"ThunderCelestial":{"name":"Thunderspire","value":100000,"slots":16,"regrows":true},"ThunderCelestialShroomPlant":{"name":"Thunderspire","value":1000000,"slots":16,"regrows":true},"DawnCelestial":{"name":"Dawnbinder","value":11000000,"slots":1,"regrows":true},"MoonCelestial":{"name":"Moonbinder","value":11000000,"slots":3,"regrows":true}};
+// Largest size multiplier per crop (game bundle 1294): a crop's value runs from x1 at 50% size to
+// this at 100%, and a pet eats exactly that value.
+const CROP_MAX_SIZE = {"Carrot":3,"Cabbage":3,"Strawberry":2,"Aloe":2.5,"Beet":3,"Daisy":2.5,"PurpleDaisy":2.5,"Clover":3,"FourLeafClover":3,"Rose":4,"FavaBean":3,"Delphinium":3,"Snowdrop":1.85,"SnowdropDouble":1.85,"Blueberry":2,"Apple":2,"OrangeTulip":3,"Tomato":2,"Daffodil":3,"Corn":2,"Watermelon":3,"Echeveria":2.75,"Pumpkin":3,"Cattail":2.5,"VariegatedCattail":2.5,"Pear":2,"Gentian":3,"Lavender":3,"Coconut":3,"PineTree":3.5,"Banana":1.7,"Leek":3,"Lily":2.75,"Saffron":3,"Cardoon":3,"Camellia":2.5,"Squash":2.5,"Peach":3,"BurrosTail":2.5,"Persimmon":2.5,"Mushroom":3.5,"Cactus":1.8,"Bamboo":2,"Eggplant":2.5,"PricklyPear":2.5,"VioletCort":3.5,"Chrysanthemum":2.75,"Date":2,"Grape":2,"Poinsettia":2,"Habanero":2.5,"Pepper":2,"Ube":3,"Milkcap":3,"Lemon":3,"PassionFruit":2,"DragonFruit":2,"Cacao":2.5,"Lychee":2,"Sunflower":2.5,"Marigold":2.5,"Dawnbreaker":3,"Emberbloom":2.5,"Embercrown":2.5,"Starweaver":2,"ThunderCelestial":2,"ThunderCelestialShroomPlant":2,"DawnCelestial":2.5,"MoonCelestial":2};
+const FOOD_MUTATIONS = [['None',1],['Wet',2],['Chilled',2],['Frozen',6],['Gold',25],['Rainbow',50]];
 const cropName = c => ((CROPS[c]&&CROPS[c].name)||c).replace(/ (Plant|Tree|Bush|Hedge|Patch|Palm|Cactus)$/,"");
 
 const HUNGER_MIN = {
@@ -184,7 +212,23 @@ const defaultFood = pk => {
 
 const $ = id => document.getElementById(id);
 let team = [ { pet: 'Worm', qty: 1, food: defaultFood('Worm') } ];
-const cropOverride = {};
+let cropOverride = {};
+const SAVE_KEY = 'mg-petfood';
+// The team and any crop edits are remembered per browser.
+try {
+  const saved = JSON.parse(localStorage.getItem(SAVE_KEY));
+  if (Array.isArray(saved?.team) && saved.team.length) {
+    const rows = saved.team.filter(row => PETS[row.pet]).map(row => ({
+      pet: row.pet,
+      qty: Math.min(3, Math.max(1, +row.qty || 1)),
+      food: PETS[row.pet].diet.includes(row.food) ? row.food : defaultFood(row.pet),
+      ...(row.life ? { life: +row.life } : {}),
+    }));
+    if (rows.length) team = rows;
+  }
+  if (saved?.crops && typeof saved.crops === 'object') cropOverride = saved.crops;
+} catch (_) {}
+const saveState = () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify({ team, crops: cropOverride })); } catch (_) {} };
 
 const PET_ORDER = ["Worm","Snail","Bee","Chicken","Bunny","Dragonfly","Pig","Cow","Turkey","SnowFox","Stoat","WhiteCaribou","Squirrel","Turtle","Goat","Sheep","Ostrich","Pony","Horse","FireHorse","Rooster","RedFox","Phoenix","Bat","Platypus","ThunderWolf","Butterfly","Peacock","Capybara"];
 const petOrdered = () => PET_ORDER.filter(k => PETS[k]);
@@ -234,7 +278,16 @@ function cropCfg(c) {
     regrow: o.regrow ?? known.regrow ?? '',
     inc: o.inc ?? known.inc ?? 0,
     grow: o.grow ?? GROW_CFG[c] ?? '',
+    size: Math.min(100, Math.max(50, o.size ?? 50)),
+    mut: o.mut ?? 1,
   };
+}
+
+// What one fruit is worth to a pet: its sell value at the chosen size and mutation.
+function feedValue(c) {
+  const cfg = cropCfg(c);
+  const max = CROP_MAX_SIZE[c] || 1;
+  return cfg.value * (1 + (max - 1) * (cfg.size - 50) / 50) * cfg.mut;
 }
 
 function renderCrops() {
@@ -245,7 +298,10 @@ function renderCrops() {
     div.className = 'cropcfg';
     let html =
       '<div class="cn">'+cropName(c)+(cfg.regrows?'':' <span class="mini">(single-harvest)</span>')+'</div>' +
-      '<div class="fld"><label>Value/fruit</label><input type="number" min="0" data-c="'+c+'" data-k="value" value="'+cfg.value+'"></div>';
+      '<div class="fld"><label>Value/fruit</label><input type="number" min="0" data-c="'+c+'" data-k="value" value="'+cfg.value+'"></div>' +
+      '<div class="fld"><label>Size %</label><input type="number" min="50" max="100" step="1" data-c="'+c+'" data-k="size" value="'+cfg.size+'" title="The size on the crop card, 50 to 100"></div>' +
+      '<div class="fld"><label>Mutation</label><select data-c="'+c+'" data-k="mut">' +
+        FOOD_MUTATIONS.map(([n,m]) => '<option value="'+m+'"'+(m===cfg.mut?' selected':'')+'>'+n+(m>1?' ×'+m:'')+'</option>').join('') + '</select></div>';
     if (cfg.regrows) {
       html +=
         '<div class="fld"><label>Slots</label><input type="number" min="1" data-c="'+c+'" data-k="slots" value="'+cfg.slots+'"></div>' +
@@ -260,7 +316,7 @@ function renderCrops() {
     div.innerHTML = html;
     el.appendChild(div);
   });
-  el.querySelectorAll('[data-c]').forEach(inp => inp.addEventListener('input', e => {
+  el.querySelectorAll('[data-c]').forEach(inp => inp.addEventListener(inp.tagName === 'SELECT' ? 'change' : 'input', e => {
     const c=e.target.dataset.c, k=e.target.dataset.k;
     (cropOverride[c] = cropOverride[c] || {})[k] = +e.target.value || 0;
     compute();
@@ -268,6 +324,7 @@ function renderCrops() {
 }
 
 function compute() {
+  saveState();
   const demand = {};
   let missing = false;
   team.forEach(row => {
@@ -276,7 +333,7 @@ function compute() {
     const cfg = cropCfg(row.food);
     if (!cfg.value) return;
     const hungerPerHr = PETS[row.pet].max / life * 60 * (row.qty||0);
-    const effectiveFoodValue = Math.min(cfg.value, PETS[row.pet].max);
+    const effectiveFoodValue = Math.min(feedValue(row.food), PETS[row.pet].max);
     demand[row.food] = (demand[row.food]||0) + hungerPerHr / effectiveFoodValue;
   });
 
@@ -316,14 +373,17 @@ function compute() {
     tb.appendChild(tr);
   });
 
+  const totalPets = team.reduce((sum, row) => sum + (row.qty || 0), 0);
   $('resnote').innerHTML =
+    (totalPets > 3 ? '<span class="warn">Only 3 pets can be active at once; this team has ' + totalPets + '.</span><br>' : '') +
     (missing ? '<span class="warn">Some pets have no hunger-empty time set — fill those in to include them.</span><br>' : '') +
     '<b>Regrowing</b> crops: a plant can produce multiple fruits per cycle, so the result is a <b>plant count</b>. ' +
     '<b>Single-harvest</b> crops: one seed grows one fruit, so the result is <b>seeds per hour</b> plus the number of tiles to keep replanted. ' +
-    'Calculations use base fruit values, so fruits with in-game bonuses may feed pets for longer than shown here.';
+    'A pet eats a fruit\'s full sell value (size and mutations included, up to its empty hunger), so set Size % and Mutation to match the food you actually use.';
 }
 
 $('addpet').addEventListener('click', () => {
+  if (team.reduce((sum, row) => sum + (row.qty || 0), 0) >= 3) return;
   const first = petOrdered()[0];
   team.push({ pet: first, qty: 1, food: defaultFood(first) });
   renderTeam(); renderCrops(); compute();
