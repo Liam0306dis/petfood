@@ -234,7 +234,7 @@ try {
 } catch (_) {}
 const saveState = () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify({ team, crops: cropOverride })); } catch (_) {} };
 
-const PET_ORDER = ["Worm","Snail","Bee","Chicken","Bunny","Dragonfly","Pig","Cow","Turkey","SnowFox","Stoat","WhiteCaribou","Squirrel","Turtle","Goat","Sheep","Ostrich","Pony","Horse","FireHorse","Rooster","RedFox","Phoenix","Bat","Platypus","ThunderWolf","Butterfly","Peacock","Capybara"];
+const PET_ORDER = ["Worm","Snail","Bee","Chicken","Bunny","Dragonfly","Pig","Cow","Turkey","SnowFox","Stoat","WhiteCaribou","Squirrel","Turtle","Goat","Sheep","Ostrich","Pony","Horse","FireHorse","Rooster","RedFox","Phoenix","Bat","Platypus","ThunderWolf","Butterfly","Peacock","Capybara","Moth","Toad","Snake"];
 const petOrdered = () => PET_ORDER.filter(k => PETS[k]);
 const petOptions = petOrdered()
   .map(k => '<option value="'+k+'">'+PETS[k].name+'</option>').join('');
